@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBO-X: The Annihilator</title> <!-- Replace with your bot's name -->
+    <!-- Tailwind CSS (CDN or your compiled output.css) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- OR <link href="./dist/output.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/custom.css"> <!-- For any custom CSS Tailwind can't easily do -->
+    <link rel="icon" href="img/favicon.png"> <!-- Add a favicon! -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> <!-- Optional: Alpine.js for simple JS interactivity -->
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <!-- 1. Navigation Bar -->
+    <nav class="bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 shadow-lg" x-data="{ open: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 text-2xl font-bold text-purple-400">
+                        AVA-X <!-- Bot Name -->
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#specs" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Specifications</a>
+                        <a href="#gallery" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                        <a href="#team" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
+                        <a href="#sponsors" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sponsors</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <!-- Mobile menu button -->
+                    <button @click="open = !open" type="button" class="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg :class="{'hidden': open, 'block': !open }" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg :class="{'block': open, 'hidden': !open }" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div x-show="open" @click.away="open = false" class="md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#specs" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Specifications</a>
+                <a href="#gallery" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="#team" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
+                <a href="#sponsors" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sponsors</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <header id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Optional: Background Video or Image -->
+        <!-- <video autoplay loop muted class="absolute z-0 w-auto min-w-full min-h-full max-w-none">
+            <source src="img/bot-action.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video> -->
+        <img src="img/photo_2025-05-29_14-45-17.jpg" alt="Robo-X Hero Shot" class="absolute z-0 w-full h-full object-cover">
+        <div class="absolute z-0 inset-0 bg-black opacity-60"></div> <!-- Overlay -->
+
+        <div class="relative z-10 text-center p-4">
+            <h1 class="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
+                AVA-X
+            </h1>
+            <p class="text-xl md:text-3xl text-purple-300 mt-4 mb-8 drop-shadow-md">
+                Precision Engineered to Destroy.
+            </p>
+            <a href="#about" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
+                Learn More
+            </a>
+        </div>
+        <!-- Optional: Scroll down indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#about" aria-label="Scroll down">
+                <svg class="w-8 h-8 text-white animate-bounce" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 3. About Section -->
+        <section id="about" class="py-16 md:py-24 bg-gray-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-400 mb-6">Meet AVA-X</h2>
+                <img src="img/Assem1.PNG" alt="Robo-X Posing" class="w-full md:w-2/3 mx-auto rounded-lg shadow-xl mb-8">
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                    AVA-X is a featherWeigh destruction machine, engineered for maximum impact and arena dominance.
+                    Born from a passion for robotics and a thirst for competition, our team has poured countless hours into perfecting every gear, circuit, and weld.
+                </p>
+                <!-- <p class="text-lg text-gray-300 leading-relaxed">
+                    AVA-X (Assault Vehicle Alpha X) is a cutting-edge combat robot that perfectly combines intelligence and aggression. Designed to meet the highest technical and tactical standards of competitions, AVA-X is built to dominate the arena. Its mission is to assert its superiority through rapid striking power, exceptional agility, and impressive mechanical robustness, all while integrating advanced electronic systems and intelligent software solutions.
+                </p> -->
+            </div>
+        </section>
+
+        <!-- 4. Specifications Section -->
+        <section id="specs" class="py-16 md:py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">Technical Specifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Spec Card 1 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl hover:shadow-purple-500/30 transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Weapon System</h3>
+                        <p class="text-gray-400"><strong class="text-gray-200">Type:</strong> High-Speed Vertical Spinner ("The Decimator")</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Material:</strong> AR500 Steel</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Speed:</strong> 250 MPH tip speed</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Motor:</strong> Dual Brushless Outrunners</p>
+                    </div>
+                    <!-- Spec Card 2 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl hover:shadow-purple-500/30 transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Drive Train</h3>
+                        <p class="text-gray-400"><strong class="text-gray-200">Type:</strong> 4WD, Custom Gearboxes</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Motors:</strong> 4 x High-Torque Brushless</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Top Speed:</strong> 15 MPH</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Wheels:</strong> Custom Molded Urethane</p>
+                    </div>
+                    <!-- Spec Card 3 -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl hover:shadow-purple-500/30 transition-shadow duration-300">
+                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Armor & Chassis</h3>
+                        <p class="text-gray-400"><strong class="text-gray-200">Chassis:</strong> Welded 6061 Aluminum Frame</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Top/Side Armor:</strong> 1/4" AR500 Steel</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Baseplate:</strong> Titanium Grade 5</p>
+                        <p class="text-gray-400"><strong class="text-gray-200">Weight:</strong> 250 lbs (Heavyweight Class)</p>
+                    </div>
+                    <!-- Add more spec cards as needed -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Gallery Section -->
+        <section id="gallery" class="py-16 md:py-24 bg-gray-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">In Action & Behind the Scenes</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" x-data="imageGallery()">
+                    <!-- Image 1 -->
+                    <div class="aspect-w-1 aspect-h-1">
+                        <img @click="openModal('img/gallery/robo-x-fight1.jpg', 'Robo-X mid-fight')" src="img/gallery/robo-x-fight1_thumb.jpg" alt="Robo-X Fight Scene 1" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="aspect-w-1 aspect-h-1">
+                         <img @click="openModal('img/gallery/robo-x-build.jpg', 'Building Robo-X')" src="img/gallery/robo-x-build_thumb.jpg" alt="Robo-X Build Process" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    </div>
+                    <!-- Add more images (ensure you have thumbnails and full-size versions) -->
+                    <div class="aspect-w-1 aspect-h-1">
+                        <img @click="openModal('img/gallery/robo-x-team-pose.jpg', 'Team with Robo-X')" src="img/gallery/robo-x-team-pose_thumb.jpg" alt="Team with Robo-X" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    </div>
+                     <div class="aspect-w-1 aspect-h-1">
+                        <img @click="openModal('img/gallery/robo-x-sparks.jpg', 'Sparks flying!')" src="img/gallery/robo-x-sparks_thumb.jpg" alt="Robo-X creating sparks" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    </div>
+                </div>
+
+                <!-- Modal for Image Lightbox -->
+                <div x-show="modalOpen" @keydown.escape.window="closeModal()" class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center" style="display: none;" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                    <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity" @click="closeModal()"></div>
+                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition-all sm:max-w-3xl sm:w-full m-4"
+                         x-show="modalOpen"
+                         x-transition:enter="ease-out duration-300"
+                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                         x-transition:leave="ease-in duration-200"
+                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                        <img :src="modalImage" :alt="modalAlt" class="w-full h-auto max-h-[80vh] object-contain">
+                        <button @click="closeModal()" class="absolute top-0 right-0 mt-4 mr-4 text-gray-400 hover:text-gray-200">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <p x-text="modalAlt" class="text-center p-4 text-gray-300"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Team Section -->
+        <section id="team" class="py-16 md:py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">The ROBO-X Crew</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Team Member Card 1 -->
+                    <div class="text-center">
+                        <img src="img/team/member1.jpg" alt="Team Member 1" class="w-40 h-40 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-purple-500">
+                        <h3 class="text-xl font-semibold text-white">Jane Doe</h3>
+                        <p class="text-purple-300">Captain & Lead Engineer</p>
+                        <p class="text-sm text-gray-400 mt-2">The visionary behind ROBO-X, Jane designs and oversees all aspects of the build.</p>
+                    </div>
+                    <!-- Team Member Card 2 -->
+                    <div class="text-center">
+                        <img src="img/team/member2.jpg" alt="Team Member 2" class="w-40 h-40 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-purple-500">
+                        <h3 class="text-xl font-semibold text-white">John Smith</h3>
+                        <p class="text-purple-300">Driver & Weapon Systems</p>
+                        <p class="text-sm text-gray-400 mt-2">With nerves of steel, John pilots ROBO-X and fine-tunes its devastating weaponry.</p>
+                    </div>
+                    <!-- Team Member Card 3 -->
+                    <div class="text-center">
+                        <img src="img/team/member3.jpg" alt="Team Member 3" class="w-40 h-40 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-purple-500">
+                        <h3 class="text-xl font-semibold text-white">Alex Chen</h3>
+                        <p class="text-purple-300">Fabrication & Electronics</p>
+                        <p class="text-sm text-gray-400 mt-2">Alex brings the designs to life, mastering metalwork and intricate wiring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Sponsors Section -->
+        <section id="sponsors" class="py-16 md:py-24 bg-gray-800">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">Our Awesome Sponsors</h2>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                    <a href="#" target="_blank" class="opacity-75 hover:opacity-100 transition-opacity">
+                        <img src="img/sponsors/sponsor1-logo.png" alt="Sponsor 1" class="h-12 md:h-16">
+                    </a>
+                    <a href="#" target="_blank" class="opacity-75 hover:opacity-100 transition-opacity">
+                        <img src="img/sponsors/sponsor2-logo.png" alt="Sponsor 2" class="h-12 md:h-16">
+                    </a>
+                    <a href="#" target="_blank" class="opacity-75 hover:opacity-100 transition-opacity">
+                        <img src="img/sponsors/sponsor3-logo.png" alt="Sponsor 3" class="h-12 md:h-16">
+                    </a>
+                    <!-- Add more sponsor logos -->
+                </div>
+                <p class="text-center text-gray-400 mt-10">
+                    Want to join the ROBO-X family?
+                    <a href="mailto:sponsors@robo-x.com" class="text-purple-400 hover:text-purple-300 font-semibold">Become a sponsor!</a>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 8. Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">© <span id="currentYear"></span> Team ROBO-X. All Rights Reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-purple-400">
+                    <span class="sr-only">Facebook</span>
+                    <!-- Replace with actual SVG or Font Awesome icon -->
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-purple-400">
+                    <span class="sr-only">Instagram</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2.014C12.215 2.004 12.115 2 12 2C6.477 2 2 6.477 2 12c0 4.875 3.442 8.936 8 9.834V15.867H8.54V13.41h1.46V11.5c0-1.91.902-3.125 3.001-3.125 1.003 0 1.562.078 1.762.114v2.307h-1.16c-.938 0-1.109.547-1.109 1.057v1.148h2.391l-.39 2.457H12.315v5.967C18.558 20.936 22 16.875 22 12c0-.115-.004-.215-.014-.315zM12 6.857c-2.762 0-5 2.239-5 5s2.238 5 5 5 5-2.239 5-5-2.238-5-5-5zm0 8.143c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zm5.857-8.286a1.143 1.143 0 100-2.286 1.143 1.143 0 000 2.286z" clip-rule="evenodd" /></svg>
+                </a>
+                <!-- Add more social links -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Basic JS for current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Alpine.js data for Gallery Modal
+        function imageGallery() {
+            return {
+                modalOpen: false,
+                modalImage: '',
+                modalAlt: '',
+                openModal(imageSrc, imageAlt) {
+                    this.modalImage = imageSrc;
+                    this.modalAlt = imageAlt;
+                    this.modalOpen = true;
+                    document.body.classList.add('overflow-hidden'); // Prevent background scroll
+                },
+                closeModal() {
+                    this.modalOpen = false;
+                    this.modalImage = '';
+                    this.modalAlt = '';
+                    document.body.classList.remove('overflow-hidden');
+                }
+            }
+        }
+    </script>
+    <!-- Your custom JS file -->
+    <script src="js/main.js"></script>
+</body>
+</html>
