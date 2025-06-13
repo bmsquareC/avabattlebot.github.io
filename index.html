@@ -3,286 +3,909 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROBO-X: The Annihilator</title> <!-- Replace with your bot's name -->
-    <!-- Tailwind CSS (CDN or your compiled output.css) -->
+    <title>AVA-X - Combat Robot</title>
+    <meta name="description" content="AVA-X is a high-performance combat robot engineered for destruction and precision in the battle arena.">
+    
+    <!-- Tailwind CSS with Inter font -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- OR <link href="./dist/output.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="css/custom.css"> <!-- For any custom CSS Tailwind can't easily do -->
-    <link rel="icon" href="img/favicon.png"> <!-- Add a favicon! -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> <!-- Optional: Alpine.js for simple JS interactivity -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
+        .swiper-slide {
+            height: auto !important;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
+<body class="bg-gray-900 text-gray-100 antialiased">
 
-    <!-- 1. Navigation Bar -->
-    <nav class="bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 shadow-lg" x-data="{ open: false }">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800/90 backdrop-blur-md sticky top-0 z-50 shadow-lg border-b border-gray-700" x-data="{ open: false, scrolled: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 50)">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a href="#" class="flex-shrink-0 text-2xl font-bold text-purple-400">
-                        AVA-X <!-- Bot Name -->
+                    <img src="./img/logo2.png" class="w-10 h-10 rounded-full border border-gray-600" alt="AVA-X Logo">
+                    <a href="#" class="ml-3 text-2xl font-extrabold gradient-text">
+                        AVA-X
                     </a>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="#specs" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Specifications</a>
-                        <a href="#gallery" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
-                        <a href="#team" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-                        <a href="#sponsors" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sponsors</a>
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#about" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            About
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#specs" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Specifications
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#gallery" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Gallery
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#team" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Team
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#sponsors" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Sponsors
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <!-- Mobile menu button -->
-                    <button @click="open = !open" type="button" class="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg :class="{'hidden': open, 'block': !open }" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <button @click="open = !open" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none" aria-controls="mobile-menu">
+                        <span class="sr-only">Open menu</span>
+                        <svg :class="{'hidden': open, 'block': !open }" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
-                        <svg :class="{'block': open, 'hidden': !open }" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <svg :class="{'block': open, 'hidden': !open }" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div x-show="open" @click.away="open = false" class="md:hidden" id="mobile-menu">
+        
+        <!-- Mobile menu -->
+        <div x-show="open" @click.away="open = false" class="md:hidden" id="mobile-menu" x-transition>
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#specs" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Specifications</a>
-                <a href="#gallery" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
-                <a href="#team" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-                <a href="#sponsors" @click="open = false" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sponsors</a>
+                <a href="#about" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">About</a>
+                <a href="#specs" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">Specifications</a>
+                <a href="#gallery" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">Gallery</a>
+                <a href="#team" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">Team</a>
+                <a href="#sponsors" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">Sponsors</a>
             </div>
         </div>
     </nav>
 
-    <!-- 2. Hero Section -->
-    <header id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Optional: Background Video or Image -->
-        <!-- <video autoplay loop muted class="absolute z-0 w-auto min-w-full min-h-full max-w-none">
-            <source src="img/bot-action.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-        </video> -->
-        <img src="img/photo_2025-05-29_14-45-17.jpg" alt="Robo-X Hero Shot" class="absolute z-0 w-full h-full object-cover">
-        <div class="absolute z-0 inset-0 bg-black opacity-60"></div> <!-- Overlay -->
-
-        <div class="relative z-10 text-center p-4">
-            <h1 class="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
-                AVA-X
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden bg-gray-900">
+        <!-- Video Background -->
+        <video autoplay muted loop class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover opacity-50">
+            <source src="./video/IMG_2428.MP4" type="video/mp4">
+        </video>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0 hero-overlay z-0"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 glow">
+                <span class="gradient-text">AVA-X</span>
             </h1>
-            <p class="text-xl md:text-3xl text-purple-300 mt-4 mb-8 drop-shadow-md">
-                Precision Engineered to Destroy.
+            <p class="text-xl sm:text-2xl md:text-3xl font-medium text-gray-300 mb-8 max-w-2xl mx-auto">
+                Precision engineered for destruction.
             </p>
-            <a href="#about" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
-                Learn More
-            </a>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#about" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30">
+                    Learn More
+                </a>
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gray-800 hover:bg-gray-700 transition-colors duration-300 shadow-lg">
+                    Contact Team
+                </a>
+            </div>
         </div>
-        <!-- Optional: Scroll down indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
-            <a href="#about" aria-label="Scroll down">
-                <svg class="w-8 h-8 text-white animate-bounce" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M19 9l-7 7-7-7"></path>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <a href="#about" aria-label="Scroll down" class="block w-10 h-10 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-600 flex items-center justify-center hover:bg-gray-700 transition-colors">
+                <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
             </a>
         </div>
     </header>
 
-    <main>
-        <!-- 3. About Section -->
-        <section id="about" class="py-16 md:py-24 bg-gray-800">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-purple-400 mb-6">Meet AVA-X</h2>
-                <img src="img/Assem1.PNG" alt="Robo-X Posing" class="w-full md:w-2/3 mx-auto rounded-lg shadow-xl mb-8">
-                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
-                    AVA-X is a featherWeigh destruction machine, engineered for maximum impact and arena dominance.
-                    Born from a passion for robotics and a thirst for competition, our team has poured countless hours into perfecting every gear, circuit, and weld.
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-gray-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    Meet AVA-X
+                </h2>
+                <p class="mt-4 max-w-4xl mx-auto text-gray-400">
+                    The ultimate combat robot engineered for high-impact performance and arena dominance
                 </p>
-                <!-- <p class="text-lg text-gray-300 leading-relaxed">
-                    AVA-X (Assault Vehicle Alpha X) is a cutting-edge combat robot that perfectly combines intelligence and aggression. Designed to meet the highest technical and tactical standards of competitions, AVA-X is built to dominate the arena. Its mission is to assert its superiority through rapid striking power, exceptional agility, and impressive mechanical robustness, all while integrating advanced electronic systems and intelligent software solutions.
-                </p> -->
             </div>
-        </section>
-
-        <!-- 4. Specifications Section -->
-        <section id="specs" class="py-16 md:py-24">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">Technical Specifications</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Spec Card 1 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl hover:shadow-purple-500/30 transition-shadow duration-300">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Weapon System</h3>
-                        <p class="text-gray-400"><strong class="text-gray-200">Type:</strong> High-Speed Vertical Spinner ("The Decimator")</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Material:</strong> AR500 Steel</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Speed:</strong> 250 MPH tip speed</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Motor:</strong> Dual Brushless Outrunners</p>
-                    </div>
-                    <!-- Spec Card 2 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl hover:shadow-purple-500/30 transition-shadow duration-300">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Drive Train</h3>
-                        <p class="text-gray-400"><strong class="text-gray-200">Type:</strong> 4WD, Custom Gearboxes</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Motors:</strong> 4 x High-Torque Brushless</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Top Speed:</strong> 15 MPH</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Wheels:</strong> Custom Molded Urethane</p>
-                    </div>
-                    <!-- Spec Card 3 -->
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl hover:shadow-purple-500/30 transition-shadow duration-300">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Armor & Chassis</h3>
-                        <p class="text-gray-400"><strong class="text-gray-200">Chassis:</strong> Welded 6061 Aluminum Frame</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Top/Side Armor:</strong> 1/4" AR500 Steel</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Baseplate:</strong> Titanium Grade 5</p>
-                        <p class="text-gray-400"><strong class="text-gray-200">Weight:</strong> 250 lbs (Heavyweight Class)</p>
-                    </div>
-                    <!-- Add more spec cards as needed -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Gallery Section -->
-        <section id="gallery" class="py-16 md:py-24 bg-gray-800">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">In Action & Behind the Scenes</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" x-data="imageGallery()">
-                    <!-- Image 1 -->
-                    <div class="aspect-w-1 aspect-h-1">
-                        <img @click="openModal('img/gallery/robo-x-fight1.jpg', 'Robo-X mid-fight')" src="img/gallery/robo-x-fight1_thumb.jpg" alt="Robo-X Fight Scene 1" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
-                    </div>
-                    <!-- Image 2 -->
-                    <div class="aspect-w-1 aspect-h-1">
-                         <img @click="openModal('img/gallery/robo-x-build.jpg', 'Building Robo-X')" src="img/gallery/robo-x-build_thumb.jpg" alt="Robo-X Build Process" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
-                    </div>
-                    <!-- Add more images (ensure you have thumbnails and full-size versions) -->
-                    <div class="aspect-w-1 aspect-h-1">
-                        <img @click="openModal('img/gallery/robo-x-team-pose.jpg', 'Team with Robo-X')" src="img/gallery/robo-x-team-pose_thumb.jpg" alt="Team with Robo-X" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
-                    </div>
-                     <div class="aspect-w-1 aspect-h-1">
-                        <img @click="openModal('img/gallery/robo-x-sparks.jpg', 'Sparks flying!')" src="img/gallery/robo-x-sparks_thumb.jpg" alt="Robo-X creating sparks" class="object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity">
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+                        <img src="img/Assem1.PNG" alt="AVA-X Robot" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <span class="inline-block px-3 py-1 bg-red-600 rounded-full text-xs font-semibold tracking-wider uppercase">Featured</span>
+                            <h3 class="mt-2 text-xl font-bold text-white">AVA-X Combat Mode</h3>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left" data-aos-delay="200">
+                    <div class="prose prose-invert max-w-none">
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            <span class="font-bold text-red-400">AVA-X</span> is a lightweight combat powerhouse, engineered for high-impact performance and arena dominance. Born from an unrelenting passion for robotics and competition, every component, gear, circuit, and weld has been fine-tuned for precision, speed, and strength.
+                        </p>
+                        <p class="text-lg text-gray-300 leading-relaxed mt-6">
+                            Designed to strike fast and move faster, AVA-X combines mechanical resilience with intelligent electronics, making it a true force on the battlefield. Whether it's outmaneuvering opponents or delivering powerful blows, AVA-X is always mission-ready.
+                        </p>
+                        
+                        <div class="mt-8 grid grid-cols-2 gap-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-semibold text-white">Lightning Fast</h4>
+                                    <p class="mt-1 text-xs text-gray-400">250 MPH weapon tip speed</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-semibold text-white">Battle Tested</h4>
+                                    <p class="mt-1 text-xs text-gray-400">Proven in competition</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-semibold text-white">Secure Design</h4>
+                                    <p class="mt-1 text-xs text-gray-400">Redundant systems</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-sm font-semibold text-white">Optimized</h4>
+                                    <p class="mt-1 text-xs text-gray-400">Perfect weight distribution</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Modal for Image Lightbox -->
-                <div x-show="modalOpen" @keydown.escape.window="closeModal()" class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center" style="display: none;" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                    <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity" @click="closeModal()"></div>
-                    <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform transition-all sm:max-w-3xl sm:w-full m-4"
-                         x-show="modalOpen"
-                         x-transition:enter="ease-out duration-300"
-                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                         x-transition:leave="ease-in duration-200"
-                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                        <img :src="modalImage" :alt="modalAlt" class="w-full h-auto max-h-[80vh] object-contain">
-                        <button @click="closeModal()" class="absolute top-0 right-0 mt-4 mr-4 text-gray-400 hover:text-gray-200">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    <!-- Specifications Section -->
+    <section id="specs" class="py-16 md:py-24 bg-gray-900/50 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute inset-0 bg-[url('img/vectors/circuit-board.svg')] bg-center bg-repeat"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    Technical Specifications
+                </h2>
+                <p class="mt-4 max-w-4xl mx-auto text-gray-400">
+                    Engineered for maximum performance and destructio
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Weapon Card -->
+                <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-red-500/10" data-aos="zoom-in">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-600/10">
+                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-white mb-4">Weapon System</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                             </svg>
-                        </button>
-                        <p x-text="modalAlt" class="text-center p-4 text-gray-300"></p>
+                            <span class="ml-2"><strong class="text-gray-100">Type:</strong> Dual Vertical Spinner + Lifter</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Material:</strong> Hardened Steel</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Speed:</strong> 250 MPH tip speed</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Motor:</strong> 2200kv Brushless</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Drive Train Card -->
+                <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-red-500/10" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-600/10">
+                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold text-center text-white mb-4">Drive Train</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Type:</strong> 4WD, Custom Gearboxes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Motors:</strong> 4 x High-Torque Brushless</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Top Speed:</strong> 7.6 MPH</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Wheels:</strong> Custom Molded</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Armor Card -->
+                <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-red-500/10" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-600/10">
+                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-white mb-4">Armor & Chassis</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Chassis:</strong> Welded 6061 Aluminum</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Armor:</strong> 1/4" HDPE</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Baseplate:</strong> 6061 Aluminum</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="ml-2"><strong class="text-gray-100">Weight:</strong> 14 Kg (Featherweight)</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- 6. Team Section -->
-        <section id="team" class="py-16 md:py-24">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">The ROBO-X Crew</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Team Member Card 1 -->
-                    <div class="text-center">
-                        <img src="img/team/member1.jpg" alt="Team Member 1" class="w-40 h-40 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-purple-500">
-                        <h3 class="text-xl font-semibold text-white">Jane Doe</h3>
-                        <p class="text-purple-300">Captain & Lead Engineer</p>
-                        <p class="text-sm text-gray-400 mt-2">The visionary behind ROBO-X, Jane designs and oversees all aspects of the build.</p>
-                    </div>
-                    <!-- Team Member Card 2 -->
-                    <div class="text-center">
-                        <img src="img/team/member2.jpg" alt="Team Member 2" class="w-40 h-40 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-purple-500">
-                        <h3 class="text-xl font-semibold text-white">John Smith</h3>
-                        <p class="text-purple-300">Driver & Weapon Systems</p>
-                        <p class="text-sm text-gray-400 mt-2">With nerves of steel, John pilots ROBO-X and fine-tunes its devastating weaponry.</p>
-                    </div>
-                    <!-- Team Member Card 3 -->
-                    <div class="text-center">
-                        <img src="img/team/member3.jpg" alt="Team Member 3" class="w-40 h-40 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-purple-500">
-                        <h3 class="text-xl font-semibold text-white">Alex Chen</h3>
-                        <p class="text-purple-300">Fabrication & Electronics</p>
-                        <p class="text-sm text-gray-400 mt-2">Alex brings the designs to life, mastering metalwork and intricate wiring.</p>
-                    </div>
-                </div>
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <a href="./ava-x_compressed.pdf" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30">
+                    Download Full Spec Sheet
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 7. Sponsors Section -->
-        <section id="sponsors" class="py-16 md:py-24 bg-gray-800">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-400 mb-12">Our Awesome Sponsors</h2>
-                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                    <a href="#" target="_blank" class="opacity-75 hover:opacity-100 transition-opacity">
-                        <img src="img/sponsors/sponsor1-logo.png" alt="Sponsor 1" class="h-12 md:h-16">
-                    </a>
-                    <a href="#" target="_blank" class="opacity-75 hover:opacity-100 transition-opacity">
-                        <img src="img/sponsors/sponsor2-logo.png" alt="Sponsor 2" class="h-12 md:h-16">
-                    </a>
-                    <a href="#" target="_blank" class="opacity-75 hover:opacity-100 transition-opacity">
-                        <img src="img/sponsors/sponsor3-logo.png" alt="Sponsor 3" class="h-12 md:h-16">
-                    </a>
-                    <!-- Add more sponsor logos -->
-                </div>
-                <p class="text-center text-gray-400 mt-10">
-                    Want to join the ROBO-X family?
-                    <a href="mailto:sponsors@robo-x.com" class="text-purple-400 hover:text-purple-300 font-semibold">Become a sponsor!</a>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-gray-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    Gallery
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                    AVA-X in action and behind the scenes
                 </p>
             </div>
-        </section>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" x-data="gallery()">
+                <!-- Gallery Item 1 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg" data-aos="zoom-in">
+                    <img src="img/Assem1.PNG" alt="AVA-X Assembly" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Final Assembly</h3>
+                            <p class="text-gray-300 text-sm mt-1">AVA-X ready for battle</p>
+                        </div>
+                    </div>
+                    <button @click="openLightbox('img/Assem1.PNG', 'Final Assembly')" class="absolute inset-0 w-full h-full focus:outline-none"></button>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="img/Assem2.PNG" alt="AVA-X Testing" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Top View</h3>
+                            <p class="text-gray-300 text-sm mt-1">AVA-X ready for battle</p>
+                        </div>
+                    </div>
+                    <button @click="openLightbox('img/Assem2.PNG', 'Testing Phase')" class="absolute inset-0 w-full h-full focus:outline-none"></button>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="img/Assem3.PNG" alt="AVA-X Competition" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Side View</h3>
+                            <p class="text-gray-300 text-sm mt-1">AVA-X ready for battle</p>
+                        </div>
+                    </div>
+                    <button @click="openLightbox('img/Assem3.PNG', 'Competition Ready')" class="absolute inset-0 w-full h-full focus:outline-none"></button>
+                </div>
+                
+                <!-- Add more gallery items as needed -->
+            </div>
+            
+            <!-- Lightbox Modal -->
+            <div x-show="isOpen" @keydown.escape="closeLightbox" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur" style="display: none;">
+                <div class="relative max-w-4xl w-full">
+                    <button @click="closeLightbox" class="absolute -top-12 right-0 text-white hover:text-red-500 transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    <img :src="activeImage" :alt="activeCaption" class="w-full max-h-[80vh] object-contain">
+                    <div class="mt-4 text-center text-white">
+                        <p x-text="activeCaption" class="text-lg font-medium"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Team Section -->
+    <section id="team" class="py-16 md:py-24 bg-gray-900/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    The AVA-X Team
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                    The brilliant minds behind the machine
+                </p>
+            </div>
+            
+            <div class="swiper teamSwiper" data-aos="fade-up">
+                <div class="swiper-wrapper pb-12">
+                    <!-- Team Member 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 h-full">
+                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-red-500 mb-4">
+                                <img src="img/team/photo_2025-06-12_17-54-17.jpg" alt="Mohammed chikh Ben Mazouzia" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-lg font-bold text-center text-white">Mohammed chikh Ben Mazouzia</h3>
+                            <p class="text-center text-red-400 font-medium">Team Leader</p>
+                            <p class="mt-3 text-center text-sm text-gray-400">
+                                Leads the overall vision, coordination, and strategy for AVA-X.
+                            </p>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="https://www.linkedin.com/in/mohammed-chikh-ben-mazouzia-457683310/" class="text-gray-400 hover:text-red-500 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="swiper-slide">
+                        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 h-full">
+                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-red-500 mb-4">
+                                <img src="img/team/member2.jpg" alt="Bensalah Nermine" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-white">Bensalah Nermine</h3>
+                            <p class="text-center text-red-400 font-medium">Marketing Lead</p>
+                            <p class="mt-3 text-center text-sm text-gray-400">
+                                Handles AVA-X's branding, media presence, and public outreach.
+                            </p>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-red-500 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 h-full">
+                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-red-500 mb-4">
+                                <img src="img/team/member1.jpg" alt="Bousada Abd Elmoumene" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-white">Bousada Abd Elmoumene</h3>
+                            <p class="text-center text-red-400 font-medium">Mechanics Lead</p>
+                            <p class="mt-3 text-center text-sm text-gray-400">
+                                Leads robot mechanical systems: durability, agility, and weapon integration.
+                            </p>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-red-500 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 h-full">
+                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-red-500 mb-4">
+                                <img src="img/team/photo_2025-06-12_17-59-59(3).jpg" alt="Bousada Abd Elmoumene" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-white">Mania Djebaili</h3>
+                            <p class="text-center text-red-400 font-medium">Control Systems Lead</p>
+                            <p class="mt-3 text-center text-sm text-gray-400">
+Leads robot control algorithms: autonomy, stability, and responsiveness.
+                                   </p>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-red-500 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 h-full">
+                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-red-500 mb-4">
+                                <img src="img/team/maria.png" alt="Maria Chafai" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-white">Maria Chafai</h3>
+                            <p class="text-center text-red-400 font-medium">Communication Systems Designer</p>
+                            <p class="mt-3 text-center text-sm text-gray-400">
+Leads robot communication systems: reliability, range, and interference resistance.
+                            </p>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="https://www.linkedin.com/in/maria-chafai-6b8415268/" class="text-gray-400 hover:text-red-500 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 h-full">
+                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-red-500 mb-4">
+                                <img src="img/team/ibtissam.png" alt="Ibtissam Djelouah" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-center text-white">Ibtissam Djelouah</h3>
+                            <p class="text-center text-red-400 font-medium">Media Responsible</p>
+                            <p class="mt-3 text-center text-sm text-gray-400">
+Leads team media presence: content creation, outreach, and event coverage                                   </p>
+                            <div class="mt-4 flex justify-center space-x-3">
+                                <a href="https://www.linkedin.com/in/ibtissem-djelouah-4a34b9268/" class="text-gray-400 hover:text-red-500 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more team members as needed -->
+                </div>
+                
+                <!-- Swiper Navigation -->
+                <div class="swiper-button-next text-red-500 hover:text-red-400 transition-colors"></div>
+                <div class="swiper-button-prev text-red-500 hover:text-red-400 transition-colors"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
 
-    <!-- 8. Footer -->
-    <footer class="bg-gray-900 border-t border-gray-700">
-        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400">© <span id="currentYear"></span> Team ROBO-X. All Rights Reserved.</p>
-            <div class="mt-4 flex justify-center space-x-6">
-                <a href="#" class="text-gray-400 hover:text-purple-400">
-                    <span class="sr-only">Facebook</span>
-                    <!-- Replace with actual SVG or Font Awesome icon -->
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+    <!-- Sponsors Section -->
+    <section id="sponsors" class="py-16 md:py-24 bg-gray-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    Our Sponsors
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                    Partners who help make AVA-X possible
+                </p>
+            </div>
+            <!--  -->
+            <!-- <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center" data-aos="fade-up"> -->
+                <!-- Sponsor Logo 1 -->
+                <!-- <div class="flex items-center justify-center p-4 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-red-500/50 transition-colors h-24">
+                    <img src="https://via.placeholder.com/150x60?text=Sponsor+1" alt="Sponsor 1" class="max-h-12 max-w-full opacity-80 hover:opacity-100 transition-opacity">
+                </div> -->
+                
+                <!-- Sponsor Logo 2 -->
+                <!-- <div class="flex items-center justify-center p-4 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-red-500/50 transition-colors h-24">
+                    <img src="https://via.placeholder.com/150x60?text=Sponsor+2" alt="Sponsor 2" class="max-h-12 max-w-full opacity-80 hover:opacity-100 transition-opacity">
+                </div> -->
+                
+                <!-- Sponsor Logo 3 -->
+                <!-- <div class="flex items-center justify-center p-4 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-red-500/50 transition-colors h-24">
+                    <img src="https://via.placeholder.com/150x60?text=Sponsor+3" alt="Sponsor 3" class="max-h-12 max-w-full opacity-80 hover:opacity-100 transition-opacity">
+                </div> -->
+                
+                <!-- Sponsor Logo 4 -->
+                <!-- <div class="flex items-center justify-center p-4 bg-gray-900/50 rounded-lg border border-gray-700 hover:border-red-500/50 transition-colors h-24">
+                    <img src="https://via.placeholder.com/150x60?text=Sponsor+4" alt="Sponsor 4" class="max-h-12 max-w-full opacity-80 hover:opacity-100 transition-opacity">
+                </div> -->
+            <!-- </div> -->
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-gray-400 mb-6">
+                    Interested in becoming a sponsor? Join our mission to build the ultimate combat robot!
+                </p>
+                <a href="mailto:ava.battlebot@gmail.com" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30">
+                    Become a Sponsor
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-purple-400">
-                    <span class="sr-only">Instagram</span>
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2.014C12.215 2.004 12.115 2 12 2C6.477 2 2 6.477 2 12c0 4.875 3.442 8.936 8 9.834V15.867H8.54V13.41h1.46V11.5c0-1.91.902-3.125 3.001-3.125 1.003 0 1.562.078 1.762.114v2.307h-1.16c-.938 0-1.109.547-1.109 1.057v1.148h2.391l-.39 2.457H12.315v5.967C18.558 20.936 22 16.875 22 12c0-.115-.004-.215-.014-.315zM12 6.857c-2.762 0-5 2.239-5 5s2.238 5 5 5 5-2.239 5-5-2.238-5-5-5zm0 8.143c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zm5.857-8.286a1.143 1.143 0 100-2.286 1.143 1.143 0 000 2.286z" clip-rule="evenodd" /></svg>
-                </a>
-                <!-- Add more social links -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Contact Section -->
+<section id="contact" class="py-16 md:py-24 bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                Get In Touch
+            </h2>
+            <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                Have questions or want to collaborate? We'd love to hear from you.
+            </p>
+        </div>
+
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-8 shadow-lg" data-aos="fade-up">
+            <form action="https://formsubmit.co/ava.battlebot@gmail.com" method="POST" class="space-y-6">
+                <!-- Optional: Set redirect page or success message -->
+                <input type="hidden" name="_next" value="./thankyou.html">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label for="subject" class="block text-sm font-medium text-gray-300 mb-1">Subject</label>
+                    <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                    <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="w-full px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Le Jeune Aviateur Club Section -->
+    <!-- <section id="club" class="py-16 md:py-24 bg-gray-800/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    Le Jeune Aviateur
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                    Our robotics and aviation club nurturing young innovators
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="club-card rounded-2xl overflow-hidden shadow-2xl border border-gray-700" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Le Jeune Aviateur Club" class="w-full h-auto object-cover">
+                </div>
+                
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <div class="prose prose-invert max-w-none">
+                        <h3 class="text-2xl font-bold text-red-500 mb-4">About Our Club</h3>
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            <strong>Le Jeune Aviateur</strong> is a dynamic youth club dedicated to fostering innovation in robotics and aviation. 
+                            We provide a platform for young enthusiasts to explore, create, and compete in the exciting 
+                            world of combat robotics and aerial technology.
+                        </p>
+                        
+                        <h4 class="text-xl font-semibold text-white mt-8 mb-3">Club Activities:</h4>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="ml-2">Combat robotics design and construction workshops</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="ml-2">Aviation technology and drone development programs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="ml-2">Regular competitions and hackathons</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="ml-2">Mentorship from industry professionals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="ml-2">Field trips to tech companies and aviation facilities</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8">
+                            <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30">
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Join Our Club
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center">
+                        <img src="./img/logo2.png" class="w-10 h-10 rounded-full border border-gray-600" alt="AVA-X Logo">
+                        <span class="ml-3 text-2xl font-extrabold gradient-text">AVA-X</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">
+                        Precision engineered combat robot built for destruction and dominance in the battle arena.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Quick Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#specs" class="text-gray-400 hover:text-white transition-colors">Specifications</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition-colors">Gallery</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white transition-colors">Team</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Connect</h3>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ava_battlebot/" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@avax5048" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        
+                    </div>
+                    <div class="mt-4">
+                        <a href="mailto:ava.battlebot@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <i class="fas fa-envelope mr-2"></i> ava.battlebot@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © <span id="currentYear"></span> Team AVA. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors mr-4">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Basic JS for current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 transition-colors duration-300 hidden z-50 flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
 
-        // Alpine.js data for Gallery Modal
-        function imageGallery() {
-            return {
-                modalOpen: false,
-                modalImage: '',
-                modalAlt: '',
-                openModal(imageSrc, imageAlt) {
-                    this.modalImage = imageSrc;
-                    this.modalAlt = imageAlt;
-                    this.modalOpen = true;
-                    document.body.classList.add('overflow-hidden'); // Prevent background scroll
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out',
+            offset: 100
+        });
+        
+        // Initialize Swiper
+        const teamSwiper = new Swiper('.teamSwiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
                 },
-                closeModal() {
-                    this.modalOpen = false;
-                    this.modalImage = '';
-                    this.modalAlt = '';
+                1024: {
+                    slidesPerView: 3,
+                },
+            }
+        });
+        
+        // Gallery lightbox functionality
+        function gallery() {
+            return {
+                isOpen: false,
+                activeImage: '',
+                activeCaption: '',
+                openLightbox(image, caption) {
+                    this.activeImage = image;
+                    this.activeCaption = caption;
+                    this.isOpen = true;
+                    document.body.classList.add('overflow-hidden');
+                },
+                closeLightbox() {
+                    this.isOpen = false;
+                    this.activeImage = '';
+                    this.activeCaption = '';
                     document.body.classList.remove('overflow-hidden');
                 }
             }
         }
+        
+        // Back to top button
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Back to top button
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('hidden');
+                } else {
+                    backToTopButton.classList.add('hidden');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
-    <!-- Your custom JS file -->
-    <script src="js/main.js"></script>
 </body>
 </html>
