@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | AVA-X</title>
+    <meta name="description" content="Thank you for contacting Team AVA-X. We'll get back to you soon.">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800/90 backdrop-blur-md sticky top-0 z-50 shadow-lg border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <img src="./img/logo2.png" class="w-10 h-10 rounded-full border border-gray-600" alt="AVA-X Logo">
+                    <a href="index.html" class="ml-3 text-2xl font-extrabold gradient-text">
+                        AVA-X
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="index.html#about" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            About
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="index.html#specs" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Specifications
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="index.html#gallery" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Gallery
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="index.html#team" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-300 relative group">
+                            Team
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="index.html#contact" class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30 ml-6">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Thank You Hero Section -->
+    <section class="relative py-24 md:py-32 flex items-center justify-center bg-gray-900 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[url('img/vectors/circuit-board.svg')] bg-center bg-repeat opacity-20"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="zoom-in">
+            <div class="w-24 h-24 bg-red-600/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
+                <span class="gradient-text">Thank You!</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-8">
+                We've received your message and will get back to you soon.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="index.html" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-300 shadow-lg hover:shadow-red-500/30">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Return Home
+                </a>
+                
+                <a href="index.html#gallery" class="inline-flex items-center justify-center px-6 py-3 border border-gray-700 text-base font-medium rounded-full text-white bg-gray-800 hover:bg-gray-700 transition-colors duration-300 shadow-lg">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    View Gallery
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Happens Next Section -->
+    <section class="py-16 md:py-24 bg-gray-800/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    What Happens Next?
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                    Here's what you can expect after contacting Team AVA-X
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-600/10">
+                        <span class="text-2xl font-bold text-red-500">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-white mb-4">Message Received</h3>
+                    <p class="text-gray-400 text-center">
+                        We've got your message and our team is reviewing it. You'll receive an automated confirmation email shortly.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-600/10">
+                        <span class="text-2xl font-bold text-red-500">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-white mb-4">Team Review</h3>
+                    <p class="text-gray-400 text-center">
+                        Our team will review your inquiry and route it to the appropriate team member who can best assist you.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 hover:border-red-500/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-red-600/10">
+                        <span class="text-2xl font-bold text-red-500">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-white mb-4">Personal Response</h3>
+                    <p class="text-gray-400 text-center">
+                        You'll receive a personalized response from our team within 2-3 business days with answers to your questions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Follow Us Section -->
+    <section class="py-16 md:py-24 bg-gray-900/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-extrabold gradient-text inline-block">
+                    Follow Our Journey
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                    Stay updated with AVA-X's latest developments and competitions
+                </p>
+            </div>
+            
+            <div class="flex justify-center space-x-6" data-aos="fade-up" data-aos-delay="100">
+                <a href="https://www.instagram.com/ava_battlebot/" class="w-14 h-14 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center text-gray-300 hover:text-white transition-colors duration-300 border border-gray-700">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="w-14 h-14 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center text-gray-300 hover:text-white transition-colors duration-300 border border-gray-700">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="https://www.tiktok.com/@avax5048" class="w-14 h-14 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center text-gray-300 hover:text-white transition-colors duration-300 border border-gray-700">
+                    <i class="fab fa-tiktok text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center">
+                        <img src="./img/logo2.png" class="w-10 h-10 rounded-full border border-gray-600" alt="AVA-X Logo">
+                        <span class="ml-3 text-2xl font-extrabold gradient-text">AVA-X</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">
+                        Precision engineered combat robot built for destruction and dominance in the battle arena.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Quick Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="index.html#specs" class="text-gray-400 hover:text-white transition-colors">Specifications</a></li>
+                        <li><a href="index.html#gallery" class="text-gray-400 hover:text-white transition-colors">Gallery</a></li>
+                        <li><a href="index.html#team" class="text-gray-400 hover:text-white transition-colors">Team</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Connect</h3>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ava_battlebot/" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                         <a href="https://www.tiktok.com/@avax5048" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                       
+                    </div>
+                    <div class="mt-4">
+                        <a href="mailto:ava.battlebot@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <i class="fas fa-envelope mr-2"></i> ava.battlebot@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © <span id="currentYear"></span> Team AVA. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors mr-4">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 transition-colors duration-300 hidden z-50 flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out',
+            offset: 100
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Auto-redirect after 10 seconds (optional)
+        setTimeout(function() {
+            // window.location.href = "index.html"; // Uncomment to enable auto-redirect
+        }, 10000);
+    </script>
+</body>
+</html>
